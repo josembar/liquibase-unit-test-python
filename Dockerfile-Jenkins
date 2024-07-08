@@ -5,6 +5,9 @@ ENV JENKINS_JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 # setting and admin user
 ENV JENKINS_OPTS="--argumentsRealm.roles.user=admin --argumentsRealm.passwd.admin=admin --argumentsRealm.roles.admin=admin"
 
+# set mysql driver version
+ARG MYSQL_CONNECTOR_VERSION=9.0.0
+
 # change to root
 USER root
 # install wget 
@@ -14,5 +17,11 @@ RUN wget -O- https://repo.liquibase.com/liquibase.asc | gpg --dearmor > liquibas
 cat liquibase-keyring.gpg | tee /usr/share/keyrings/liquibase-keyring.gpg > /dev/null && \
 echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/liquibase-keyring.gpg] https://repo.liquibase.com stable main' | tee /etc/apt/sources.list.d/liquibase.list
 RUN apt-get update && apt-get install liquibase
+# install mysql driver
+RUN wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-j-$MYSQL_CONNECTOR_VERSION.tar.gz && \
+tar -xzvf mysql-connector-j-$MYSQL_CONNECTOR_VERSION.tar.gz && mkdir -p /usr/local/bin/liquibase/internal/lib/ && \
+cp mysql-connector-j-$MYSQL_CONNECTOR_VERSION/mysql-connector-j-$MYSQL_CONNECTOR_VERSION.jar  /usr/local/bin/liquibase/internal/lib/
+#RUN ls -lha /usr/local/bin/liquibase/internal/lib
+RUN rm -rf mysql-connector-j-$MYSQL_CONNECTOR_VERSION*
 # change to jenkins user
 USER jenkins
