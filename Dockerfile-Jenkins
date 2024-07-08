@@ -1,1 +1,7 @@
 FROM jenkins/jenkins:jdk17
+
+# disable set up wizard
+ENV JENKINS_JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
+
+# setting and admin user
+ENV JENKINS_OPTS="--argumentsRealm.roles.user=admin --argumentsRealm.passwd.admin=admin --argumentsRealm.roles.admin=admin"
