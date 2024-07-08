@@ -2,6 +2,17 @@ FROM jenkins/jenkins:jdk17
 
 # disable set up wizard
 ENV JENKINS_JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
-
 # setting and admin user
 ENV JENKINS_OPTS="--argumentsRealm.roles.user=admin --argumentsRealm.passwd.admin=admin --argumentsRealm.roles.admin=admin"
+
+# change to root
+USER root
+# install wget 
+RUN apt-get update && apt-get install wget
+# install liquibase
+RUN wget -O- https://repo.liquibase.com/liquibase.asc | gpg --dearmor > liquibase-keyring.gpg && \
+cat liquibase-keyring.gpg | tee /usr/share/keyrings/liquibase-keyring.gpg > /dev/null && \
+echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/liquibase-keyring.gpg] https://repo.liquibase.com stable main' | tee /etc/apt/sources.list.d/liquibase.list
+RUN apt-get update && apt-get install liquibase
+# change to jenkins user
+USER jenkins
