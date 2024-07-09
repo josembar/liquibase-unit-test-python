@@ -5,6 +5,10 @@ ENV JENKINS_JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
 # setting and admin user
 ENV JENKINS_OPTS="--argumentsRealm.roles.user=admin --argumentsRealm.passwd.admin=admin --argumentsRealm.roles.admin=admin"
 
+# install plugins
+COPY --chown=jenkins:jenkins jenkins-plugins.txt /usr/share/jenkins/ref/plugins.txt
+RUN jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins.txt
+
 # set mysql driver version
 ARG MYSQL_CONNECTOR_VERSION=9.0.0
 
