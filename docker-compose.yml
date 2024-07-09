@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+
+  db:
+    container_name: mysqldb
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: liquibase_demo
+    # (this is just an example, not intended to be a production configuration)
+    networks:
+      - jenkins-liquibase
+  jenkins:
+    container_name: myjenkins
+    image: myjenkins
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile-Jenkins
+    networks:
+      - jenkins-liquibase
+
+networks:
+  jenkins-liquibase:
