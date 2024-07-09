@@ -11,6 +11,8 @@ services:
     # (this is just an example, not intended to be a production configuration)
     networks:
       - jenkins-liquibase
+    ports:
+      - 3306:3306
   jenkins:
     container_name: myjenkins
     image: myjenkins
@@ -20,6 +22,8 @@ services:
       dockerfile: Dockerfile-Jenkins
     networks:
       - jenkins-liquibase
+    ports:
+      - 8080:8080
 
 networks:
   jenkins-liquibase:
