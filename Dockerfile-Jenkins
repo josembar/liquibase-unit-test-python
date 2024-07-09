@@ -27,5 +27,6 @@ tar -xzvf mysql-connector-j-$MYSQL_CONNECTOR_VERSION.tar.gz && mkdir -p /usr/loc
 cp mysql-connector-j-$MYSQL_CONNECTOR_VERSION/mysql-connector-j-$MYSQL_CONNECTOR_VERSION.jar  /usr/local/bin/liquibase/internal/lib/
 #RUN ls -lha /usr/local/bin/liquibase/internal/lib
 RUN rm -rf mysql-connector-j-$MYSQL_CONNECTOR_VERSION*
+
 # change to jenkins user
 USER jenkins
