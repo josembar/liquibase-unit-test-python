@@ -1,9 +1,18 @@
 pipeline {
     agent any
     stages {
-        stage('Stage 1') {
+        stage('Check status') {
             steps {
-                sh 'liquibase --version'
+                withCredentials([usernamePassword(credentialsId: 'mysql_credentials', passwordVariable: 'MYSQL_PASSWORD', usernameVariable: 'MYSQL_USER')]) {
+                    //sh 'liquibase --version'
+                    sh '''
+                        liquibase status \
+                        --url="jdbc:mysql://mysqldb:3306/demo?allowPublicKeyRetrieval=true&useSSL=False" \
+                        --changeLogFile=changelog.xml \
+                        --username=$MYSQL_USER \
+                        --password=$MYSQL_PASSWORD
+                    '''
+                }
             }
         }
     }
