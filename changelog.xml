@@ -13,6 +13,11 @@
         <sqlFile dbms="mysql"
             path="create_table.sql"
             relativeToChangelogFile="true"/>
+        <rollback>
+            <sqlFile dbms="mysql"
+                path="create_table_rollback.sql"
+                relativeToChangelogFile="true"/>
+        </rollback>
     </changeSet>
 
 </databaseChangeLog>
