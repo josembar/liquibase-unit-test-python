@@ -9,6 +9,9 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: liquibase_demo
     # (this is just an example, not intended to be a production configuration)
+      MYSQL_DATABASE: demo
+      MYSQL_USER: jose
+      MYSQL_PASSWORD: jose_demo
     networks:
       - jenkins-liquibase
     ports:
