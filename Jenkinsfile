@@ -9,6 +9,7 @@ pipeline {
                     sh '''
                         liquibase status \
                         --url=jdbc:mysql://mysqldb:3306/demo?allowPublicKeyRetrieval=true&useSSL=False \
+                        --search-path=$WORKSPACE \
                         --changeLogFile=changelog.xml \
                         --username=$MYSQL_USER \
                         --password=$MYSQL_PASSWORD
