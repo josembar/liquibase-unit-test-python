@@ -9,7 +9,7 @@ pipeline {
                     sh 'ls -lha $WORKSPACE'
                     sh '''
                         liquibase status \
-                        --classpath=/usr/local/bin/liquibase/internal/lib/mysql-connector-j-9.0.0 \
+                        --classpath=/usr/local/bin/liquibase/internal/lib/mysql-connector-j-9.0.0.jar \
                         --url=jdbc:mysql://mysqldb:3306/demo \
                         --changeLogFile=changelog.xml \
                         --username=$MYSQL_USER \
