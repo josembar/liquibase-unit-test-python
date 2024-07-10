@@ -12,10 +12,11 @@ services:
       MYSQL_DATABASE: demo
       MYSQL_USER: jose
       MYSQL_PASSWORD: jose_demo
-    networks:
-      - jenkins-liquibase
+    # networks:
+    #   - jenkins-liquibase
     ports:
       - 3306:3306
+    network_mode: bridge
   jenkins:
     container_name: myjenkins
     image: myjenkins
@@ -23,12 +24,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-Jenkins
-    networks:
-      - jenkins-liquibase
+    # networks:
+    #   - jenkins-liquibase
     ports:
       - 8080:8080
+    network_mode: bridge
     depends_on:
       - db
 
-networks:
-  jenkins-liquibase:
+# networks:
+#   jenkins-liquibase:
+#     driver: bridge
