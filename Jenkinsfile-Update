@@ -7,7 +7,7 @@ pipeline {
                     //sh 'liquibase --version'
                     sh '''
                         liquibase clear-checksums \
-                        --classpath=$LIQUIBASE_MYSQL_DRIVER_PATH \
+                        --classpath=$DRIVER_PATH_LIQUIBASE \
                         --url=jdbc:mysql://$DEMO_DB_HOST:3306/$DEMO_DB_NAME \
                         --username=$MYSQL_USER \
                         --password=$MYSQL_PASSWORD
@@ -21,7 +21,7 @@ pipeline {
                     //sh 'liquibase --version'
                     sh '''
                         liquibase status \
-                        --classpath=$LIQUIBASE_MYSQL_DRIVER_PATH \
+                        --classpath=$DRIVER_PATH_LIQUIBASE \
                         --url=jdbc:mysql://$DEMO_DB_HOST:3306/$DEMO_DB_NAME \
                         --changeLogFile=changelog.xml \
                         --username=$MYSQL_USER \
@@ -35,7 +35,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'mysql_credentials', passwordVariable: 'MYSQL_PASSWORD', usernameVariable: 'MYSQL_USER')]) {
                     sh '''
                         liquibase update \
-                        --classpath=$LIQUIBASE_MYSQL_DRIVER_PATH \
+                        --classpath=$DRIVER_PATH_LIQUIBASE \
                         --url=jdbc:mysql://$DEMO_DB_HOST:3306/$DEMO_DB_NAME \
                         --changeLogFile=changelog.xml \
                         --username=$MYSQL_USER \
