@@ -23,7 +23,7 @@ pipeline {
                         liquibase status \
                         --classpath=$DRIVER_PATH_LIQUIBASE \
                         --url=jdbc:mysql://$DEMO_DB_HOST:3306/$DEMO_DB_NAME \
-                        --changeLogFile=changelog.xml \
+                        --changeLogFile=changelog.sql \
                         --username=$MYSQL_USER \
                         --password=$MYSQL_PASSWORD
                     '''
@@ -37,7 +37,7 @@ pipeline {
                         liquibase update \
                         --classpath=$DRIVER_PATH_LIQUIBASE \
                         --url=jdbc:mysql://$DEMO_DB_HOST:3306/$DEMO_DB_NAME \
-                        --changeLogFile=changelog.xml \
+                        --changeLogFile=changelog.sql \
                         --username=$MYSQL_USER \
                         --password=$MYSQL_PASSWORD
                     '''
