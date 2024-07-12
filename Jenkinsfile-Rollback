@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    parameters {
+        string(name: 'count', defaultValue: '1', description: 'Number of changesets to rollback')
+    }
     stages {
         stage('Clear checksums') {
             steps {
