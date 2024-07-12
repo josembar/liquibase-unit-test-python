@@ -6,8 +6,8 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'mysql_credentials', passwordVariable: 'MYSQL_PASSWORD', usernameVariable: 'MYSQL_USER')]) {
                     sh '''
                         liquibase clear-checksums \
-                        --classpath=/usr/local/bin/liquibase/internal/lib/mysql-connector-j-9.0.0.jar \
-                        --url=jdbc:mysql://172.17.0.2:3306/demo \
+                        --classpath=$LIQUIBASE_MYSQL_DRIVER_PATH \
+                        --url=jdbc:mysql://$DEMO_DB_HOST:3306/$DEMO_DB_NAME \
                         --username=$MYSQL_USER \
                         --password=$MYSQL_PASSWORD
                     '''
@@ -20,8 +20,8 @@ pipeline {
                     sh '''
                         liquibase rollback-count-sql \
                         --count=1 \
-                        --classpath=/usr/local/bin/liquibase/internal/lib/mysql-connector-j-9.0.0.jar \
-                        --url=jdbc:mysql://172.17.0.2:3306/demo \
+                        --classpath=$LIQUIBASE_MYSQL_DRIVER_PATH \
+                        --url=jdbc:mysql://$DEMO_DB_HOST:3306/$DEMO_DB_NAME \
                         --changeLogFile=changelog.xml \
                         --username=$MYSQL_USER \
                         --password=$MYSQL_PASSWORD
@@ -35,8 +35,8 @@ pipeline {
                     sh '''
                         liquibase rollback-count \
                         --count=1 \
-                        --classpath=/usr/local/bin/liquibase/internal/lib/mysql-connector-j-9.0.0.jar \
-                        --url=jdbc:mysql://172.17.0.2:3306/demo \
+                        --classpath=$LIQUIBASE_MYSQL_DRIVER_PATH \
+                        --url=jdbc:mysql://$DEMO_DB_HOST:3306/$DEMO_DB_NAME \
                         --changeLogFile=changelog.xml \
                         --username=$MYSQL_USER \
                         --password=$MYSQL_PASSWORD
