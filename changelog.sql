@@ -17,3 +17,9 @@ UPDATE test_table
 SET test_column = 20000
 WHERE test_id = 10
 --rollback empty
+
+--changeset jose.barrantes:5
+UPDATE test_table
+SET test_column = 50000
+WHERE test_id = 10
+--rollback changesetId:4 changesetAuthor:jose.barrantes
