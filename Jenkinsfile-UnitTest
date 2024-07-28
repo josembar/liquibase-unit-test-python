@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+    stages {
+        stage('Run unit tests') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'mysql_credentials', passwordVariable: 'MYSQL_PASSWORD', usernameVariable: 'MYSQL_USER')]) {
+                    sh '''
+                        python -m unittest mysql_unittest.py
+                    '''
+                }
+            }
+        }
+    }
+}
