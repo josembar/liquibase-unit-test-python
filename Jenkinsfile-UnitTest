@@ -9,6 +9,11 @@ pipeline {
                     '''
                 }
             }
+            post {
+                failure {
+                    build wait: false, job: 'liquibase-run-rollback', parameters: [string(name: 'count', value: '1')]
+                }
+            }
         }
     }
 }
