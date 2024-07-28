@@ -9,5 +9,3 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 python -m unittest mysql_unittest.py
-
-deactivate
