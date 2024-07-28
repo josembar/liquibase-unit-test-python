@@ -6,8 +6,8 @@ python3 -m venv venv
 
 source venv/bin/activate
 
-pip -r install requirements.txt
+pip install -r requirements.txt
 
-python -m unittest mysql_unitest.py
+python -m unittest mysql_unittest.py
 
 deactivate
