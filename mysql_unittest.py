@@ -46,7 +46,7 @@ class TestMySQLDBMethods(unittest.TestCase):
         result = self.run_query(query)
         self.assertTrue(len(result) > 0)
     
-    def check_specific_record(self):
+    def test_check_specific_record(self):
         query = """
             SELECT * FROM test_table
             WHERE test_column = 20000
