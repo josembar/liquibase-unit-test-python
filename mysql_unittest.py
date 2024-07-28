@@ -31,12 +31,28 @@ class TestMySQLDBMethods(unittest.TestCase):
                 FROM information_schema.TABLES 
                 WHERE TABLE_SCHEMA = (SELECT DATABASE())
                 AND TABLE_TYPE = 'BASE TABLE'
-                AND TABLE_NAME = 'DATABASECHANGELOG'
+                AND TABLE_NAME = 'test_table'
             ) AS DO_EXIST;
         """
         result = self.run_query(query)
         result = result[0][0]
         self.assertEqual(result, 1)
+    
+    def test_check_inserts(self):
+        query = """
+            SELECT * FROM test_table
+            WHERE test_id IN (1,10)
+        """
+        result = self.run_query(query)
+        self.assertTrue(len(result) > 0)
+    
+    def check_specific_record(self):
+        query = """
+            SELECT * FROM test_table
+            WHERE test_column = 20000
+        """
+        result = self.run_query(query)
+        self.assertTrue(len(result) > 0)
 
 if __name__ == '__main__':
     unittest.main()
