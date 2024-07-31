@@ -1,4 +1,5 @@
 import hudson.plugins.git.*;
+import jenkins.model.Jenkins
 
 def scm = new GitSCM("https://github.com/josembar/liquibase-unit-test-python.git")
 scm.branches = [new BranchSpec("*/main")];
