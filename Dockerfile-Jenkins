@@ -9,6 +9,9 @@ ENV JENKINS_OPTS="--argumentsRealm.roles.user=admin --argumentsRealm.passwd.admi
 COPY --chown=jenkins:jenkins jenkins-plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins.txt
 
+# copy script to create pipelines
+COPY --chown=jenkins:jenkins pipeline_creation.groovy /usr/share/jenkins/ref/init.groovy.d/pipeline_creation.groovy
+
 # set mysql driver version
 ARG MYSQL_CONNECTOR_VERSION=9.0.0
 
