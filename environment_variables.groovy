@@ -28,7 +28,7 @@ public createGlobalEnvironmentVariables(String key, String value){
 
 def environmentVariables = [
     "DRIVER_PATH_LIQUIBASE": "/usr/local/bin/liquibase/internal/lib/mysql-connector-j-9.0.0.jar",
-    "DEMO_DB_HOST": "172.17.0.2",
+    "DEMO_DB_HOST": "db",
     "DEMO_DB_NAME": "demo",
     "DEMO_DB_PORT": "3306"
 ]
