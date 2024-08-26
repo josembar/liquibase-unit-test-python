@@ -2,13 +2,19 @@ import unittest
 from sqlalchemy import create_engine, text
 from os import environ
 
-print(f"{environ['MYSQL_USER']}")
 class TestMySQLDBMethods(unittest.TestCase):
     
     @staticmethod
     def run_query(query:str):
+        # Create database url
+        user = environ['MYSQL_USER']
+        password = environ['MYSQL_PASSWORD']
+        host = environ['DEMO_DB_HOST']
+        port = environ['DEMO_DB_PORT']
+        database = environ['DEMO_DB_NAME']
+        url = f"mysql+mysqlconnector://{user}:{password}@{host}/{database}"
         # Connect to the database
-        engine = create_engine("mysql+mysqlconnector://jose:jose_demo@172.17.0.2/demo")
+        engine = create_engine(url)
         connection = engine.connect()
         # Run the query
         result = connection.execute(text(query))
