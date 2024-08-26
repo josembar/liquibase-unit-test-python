@@ -1,5 +1,6 @@
 import hudson.plugins.git.*;
 import jenkins.model.Jenkins
+import hudson.model.*
 
 // pipeline creation
 def scm = new GitSCM("https://github.com/josembar/liquibase-unit-test-python.git")
@@ -13,5 +14,10 @@ for (element in pipelineDefinition) {
 	parent = Jenkins.instance
 	job = new org.jenkinsci.plugins.workflow.job.WorkflowJob(parent, element.key)
 	job.definition = flowDefinition
+	if (element.key == "liquibase-run-rollback") {
+		List<ParameterDefinition> newParams = new ArrayList<>()
+		newParams.add(new StringParameterDefinition("count", "1", "Number of changesets to rollback", true))
+		job.addProperty(new ParametersDefinitionProperty(newParams))
+	}
 	parent.reload()
 }
