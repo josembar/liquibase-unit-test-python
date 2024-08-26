@@ -1,6 +1,8 @@
 import unittest
 from sqlalchemy import create_engine, text
+from os import environ
 
+print(f"{environ['MYSQL_USER']}")
 class TestMySQLDBMethods(unittest.TestCase):
     
     @staticmethod
