@@ -6,11 +6,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'mysql_credentials', passwordVariable: 'MYSQL_PASSWORD', usernameVariable: 'MYSQL_USER')]) {
                     //sh 'liquibase --version'
                     sh '''
-                        liquibase clear-checksums \
-                        --classpath=$DRIVER_PATH_LIQUIBASE \
-                        --url=jdbc:mysql://$DEMO_DB_HOST:3306/$DEMO_DB_NAME \
-                        --username=$MYSQL_USER \
-                        --password=$MYSQL_PASSWORD
+                        ./liquibase_clear_checksums.sh
                     '''
                 }
             }
@@ -18,7 +14,6 @@ pipeline {
         stage('Check status') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'mysql_credentials', passwordVariable: 'MYSQL_PASSWORD', usernameVariable: 'MYSQL_USER')]) {
-                    //sh 'liquibase --version'
                     sh '''
                         liquibase status \
                         --classpath=$DRIVER_PATH_LIQUIBASE \
