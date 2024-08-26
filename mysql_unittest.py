@@ -12,7 +12,7 @@ class TestMySQLDBMethods(unittest.TestCase):
         host = environ['DEMO_DB_HOST']
         port = environ['DEMO_DB_PORT']
         database = environ['DEMO_DB_NAME']
-        url = f"mysql+mysqlconnector://{user}:{password}@{host}/{database}"
+        url = f"mysql+mysqlconnector://{user}:{password}@{host}:{port}/{database}"
         # Connect to the database
         engine = create_engine(url)
         connection = engine.connect()
