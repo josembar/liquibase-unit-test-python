@@ -8,7 +8,7 @@ pipeline {
                     sh '''
                         liquibase clear-checksums \
                         --classpath=$DRIVER_PATH_LIQUIBASE \
-                        --url=jdbc:mysql://$DEMO_DB_HOST:3306/$DEMO_DB_NAME \
+                        --url=jdbc:mysql://db:3306/$DEMO_DB_NAME \
                         --username=$MYSQL_USER \
                         --password=$MYSQL_PASSWORD
                     '''
