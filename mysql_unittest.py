@@ -20,7 +20,6 @@ class TestMySQLDBMethods(unittest.TestCase):
         result = connection.execute(text(query))
         # Get a list of tuples as result
         result = result.all()
-        #print("result {0}".format(result))
         # Close connection
         connection.close()
         engine.dispose()
