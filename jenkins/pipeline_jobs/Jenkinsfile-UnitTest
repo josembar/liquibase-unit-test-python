@@ -3,10 +3,12 @@ pipeline {
     stages {
         stage('Run unit tests') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'mysql_credentials', passwordVariable: 'MYSQL_PASSWORD', usernameVariable: 'MYSQL_USER')]) {
-                    sh '''
-                        ./run_unit_test.sh
-                    '''
+                dir("unit_test") {
+                    withCredentials([usernamePassword(credentialsId: 'mysql_credentials', passwordVariable: 'MYSQL_PASSWORD', usernameVariable: 'MYSQL_USER')]) {
+                        sh '''
+                            ./run_unit_test.sh
+                        '''
+                    }
                 }
             }
             post {
