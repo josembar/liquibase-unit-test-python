@@ -10,7 +10,7 @@ COPY --chown=jenkins:jenkins jenkins-plugins.txt /usr/share/jenkins/ref/plugins.
 RUN jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins.txt
 
 # copy script to create pipelines
-COPY --chown=jenkins:jenkins *.groovy /usr/share/jenkins/ref/init.groovy.d/
+COPY --chown=jenkins:jenkins jenkins/init_scripts/*.groovy /usr/share/jenkins/ref/init.groovy.d/
 
 # set mysql driver version
 ARG MYSQL_CONNECTOR_VERSION=9.0.0
