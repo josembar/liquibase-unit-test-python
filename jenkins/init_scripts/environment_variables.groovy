@@ -31,7 +31,7 @@ def environmentVariables = [
     "DEMO_DB_HOST": "db",
     "DEMO_DB_NAME": "demo",
     "DEMO_DB_PORT": "3306",
-    "SCRIPTS_DIRECTORY" : "liquibase_scripts/"
+    "SCRIPTS_DIRECTORY" : "liquibase_scripts"
 ]
 
 for (element in environmentVariables) {

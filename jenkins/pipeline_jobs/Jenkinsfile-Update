@@ -6,7 +6,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'mysql_credentials', passwordVariable: 'MYSQL_PASSWORD', usernameVariable: 'MYSQL_USER')]) {
                     //sh 'liquibase --version'
                     sh '''
-                        ./liquibase_clear_checksums.sh
+                        ./$SCRIPTS_DIRECTORY/liquibase_clear_checksums.sh
                     '''
                 }
             }
@@ -15,7 +15,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'mysql_credentials', passwordVariable: 'MYSQL_PASSWORD', usernameVariable: 'MYSQL_USER')]) {
                     sh '''
-                        ./liquibase_check_status.sh
+                        ./$SCRIPTS_DIRECTORY/liquibase_check_status.sh
                     '''
                 }
             }
@@ -24,7 +24,7 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'mysql_credentials', passwordVariable: 'MYSQL_PASSWORD', usernameVariable: 'MYSQL_USER')]) {
                     sh '''
-                        ./liquibase_apply_changeset.sh
+                        ./$SCRIPTS_DIRECTORY/liquibase_apply_changeset.sh
                     '''
                 }
             }
