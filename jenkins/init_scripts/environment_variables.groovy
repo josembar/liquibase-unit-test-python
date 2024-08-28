@@ -30,7 +30,8 @@ def environmentVariables = [
     "DRIVER_PATH_LIQUIBASE": "/usr/local/bin/liquibase/internal/lib/mysql-connector-j-9.0.0.jar",
     "DEMO_DB_HOST": "db",
     "DEMO_DB_NAME": "demo",
-    "DEMO_DB_PORT": "3306"
+    "DEMO_DB_PORT": "3306",
+    "SCRIPTS_DIRECTORY" : "liquibase_scripts/"
 ]
 
 for (element in environmentVariables) {
