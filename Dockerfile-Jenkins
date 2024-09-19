@@ -32,9 +32,8 @@ apt-get update && apt-get install liquibase
 # install mysql driver
 RUN wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-j-$MYSQL_CONNECTOR_VERSION.tar.gz && \
 tar -xzvf mysql-connector-j-$MYSQL_CONNECTOR_VERSION.tar.gz && mkdir -p /usr/local/bin/liquibase/internal/lib/ && \
-cp mysql-connector-j-$MYSQL_CONNECTOR_VERSION/mysql-connector-j-$MYSQL_CONNECTOR_VERSION.jar  /usr/local/bin/liquibase/internal/lib/
-#RUN ls -lha /usr/local/bin/liquibase/internal/lib
-RUN rm -rf mysql-connector-j-$MYSQL_CONNECTOR_VERSION*
+cp mysql-connector-j-$MYSQL_CONNECTOR_VERSION/mysql-connector-j-$MYSQL_CONNECTOR_VERSION.jar  /usr/local/bin/liquibase/internal/lib/ && \
+rm -rf mysql-connector-j-$MYSQL_CONNECTOR_VERSION*
 
 # change to jenkins user
 USER jenkins
